@@ -11,6 +11,7 @@ dist
 lib
 out
 run
+run_*
 target
 *.com
 *.class
@@ -76,4 +77,3 @@ nb-configuration.xml
 *.iws
 *.launch
 *.number
-

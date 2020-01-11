@@ -1,0 +1,11 @@
+key.armorshudrevived.toggle=Toggle Armors HUD
+key.armorshudrevived.cycle=Cycle HUD Location
+
+gui.armorshudrevived.config.enabled=Enabled
+gui.armorshudrevived.config.enabled.tooltip=Enables the Armors HUD Revived
+gui.armorshudrevived.config.location=HUD Location
+gui.armorshudrevived.config.location.tooltip=Armors HUD location on the screen
+
+gui.armorshudrevived.config.bottomright=Bottom Right
+gui.armorshudrevived.config.bottomleft=Bottom Left
+gui.armorshudrevived.config.topcenter=Top Center

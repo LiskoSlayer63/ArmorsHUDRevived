@@ -18,7 +18,7 @@ public class ArmorsHUDRenderer {
 	 * TOP_CENTER: 2
 	 * </pre>
 	 */
-	private enum Location
+	public enum Location
 	{
 		BOTTOM_LEFT(1),
 		BOTTOM_RIGHT(0),
@@ -70,64 +70,25 @@ public class ArmorsHUDRenderer {
         	}
         }
         
-        /**
-         * changes the enum to i
-         * @param i	the new enum index
-         */
-		public void set(int i)
-        {
-        	value = i;
-        }
+        public void cycleLocation()
+    	{
+    		value = (value + 1) % Location.locations;
+    	}
         
 		@Override
 		public String toString()
 		{
 			if(value == 0)
 			{
-				return "armorshud.config.bottomright";
+				return "gui.armorshudrevived.config.bottomright";
 			} else if (value == 1) {
-				return "armorshud.config.bottomleft";
+				return "gui.armorshudrevived.config.bottomleft";
 			} else if (value == 2) {
-				return "armorshud.config.topcenter";
+				return "gui.armorshudrevived.config.topcenter";
 			} else {
 				return "Internal Error 001";
 			}
 		}
-	}
-	private boolean enabled = true;
-	
-	private Location location = Location.BOTTOM_RIGHT;
-	
-	/**
-	 * Increments the index of the location the overlay should be rendered
-	 * on-screen by one, resetting to zero when it reaches the max index
-	 */
-	public void cycleLocation()
-	{
-		location.set(((location.value + 1) % Location.locations));
-	}
-	
-	public int getLocation()
-	{
-		return location.value;
-	}
-	
-	/**
-	 * Returns the unlocalized string for the current location
-	 * @return the unlocalized string for the current location
-	 */
-	public String getLocationString()
-	{
-		return location.toString();
-	}
-	
-	/**
-	 * Tells whether the armor overlay is enabled
-	 * @return	whether or not the armor overlay is enabled
-	 */
-	public boolean isEnabled()
-	{
-		return enabled;
 	}
 	
 	/**
@@ -141,7 +102,7 @@ public class ArmorsHUDRenderer {
 
         //This will only work if the player exists and has an inventory, and if the overlay is enabled
 		//Essentially has to be loaded into a world
-		if (mc.player != null && mc.player.inventory != null && enabled)
+		if (mc.player != null && mc.player.inventory != null && ArmorsHUDConfig.enabled)
         {
             //Check to make sure armor overlay doesn't render while in spectator
 			if (mc.world.getWorldInfo().getGameType() != GameType.SPECTATOR)
@@ -152,8 +113,8 @@ public class ArmorsHUDRenderer {
                 RenderHelper.enableGUIStandardItemLighting();
                 for (int i = 0; i < 4; ++i)
                 {
-                	int x = location.processX(screenWidth, i);
-                	int y = location.processY(screenHeight, i);
+                	int x = ArmorsHUDConfig.location.processX(screenWidth, i);
+                	int y = ArmorsHUDConfig.location.processY(screenHeight, i);
                 	this.renderArmor(i, x, y, mc.getRenderPartialTicks(), mc.player);
                 }
                
@@ -201,26 +162,4 @@ public class ArmorsHUDRenderer {
         }
     }
 
-	/**
-	 * Turns the armor overlay on or off based on the boolean value given
-	 * @param status whether to render the overlay or not
-	 */
-	public void setEnabled(boolean status) {
-		enabled = status;		
-	}
-
-	/**
-	 * Sets the location of the armor overlay on the screen manually
-	 * @param loc the index of the overlay position
-	 */
-	public void setLocation(int loc) {
-		location.set(loc);
-	}
-	
-	/**
-	 * Toggles the armor overlay on or off
-	 */
-	public void toggleArmors() {
-		this.enabled = !this.enabled;
-	}
 }
