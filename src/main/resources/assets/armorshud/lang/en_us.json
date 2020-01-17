@@ -1,0 +1,13 @@
+{
+  "armorshud.key.toggle": "Toggle Armors HUD",
+  "armorshud.key.cycle": "Cycle HUD Location",
+
+  "armorshud.config.enabled": "Enabled",
+  "armorshud.config.enabled.tooltip": "Enables the Armors HUD Revived",
+  "armorshud.config.location": "HUD Location",
+  "armorshud.config.location.tooltip": "Armors HUD location on the screen",
+  
+  "armorshud.location.bottomright": "Bottom Right",
+  "armorshud.location.armorshud.bottomleft": "Bottom Left",
+  "armorshud.location.armorshud.topcenter": "Top Center"
+}

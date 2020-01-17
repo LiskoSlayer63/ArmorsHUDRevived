@@ -1,0 +1,60 @@
+modLoader="javafml"
+loaderVersion="[25,)"
+[[mods]]
+modId="armorshud"
+version="1.0.3"
+displayName="Armors HUD Revived"
+logoFile="armorshud.png"
+credits="Sources written by Shadow_Hawk. Ported to Forge by LiskoSlayer63."
+authors="LiskoSlayer63, Shadow_Hawk"
+description='''
+A movable HUD for armor!
+
+-Can be toggled in-game via the settings here or with a keybind
+-Can be adjusted to show the HUD at the top of the screen or in one of the bottom corners
+-Keybinds are off by default, but you can easily set them from the \"commands\" setting page
+
+
+CHANGELOG:
+1.2.0:
+-added internationalization
+-updated the config panel to utilize an improved interface available after 1.11
+-refactored renderer code to make more overlay locations easier to add
+-updated project to be LiteMDK compliant
+-added changelog to mod description
+
+1.1.0:
+-added toggle for HUD
+-added two new locations for the HUD for a total of three
+-added config panel and keybinds to toggle/cycle new settings
+-added unversioned config file
+-added mod description text
+-refactored code for future inter-project compatibility
+-switched to SemVer compliant version numbering
+
+1.0.3:
+-update to 1.10.r1
+
+1.0.2:
+-update to 1.9.4
+
+1.0.1:
+-fixed side by side compatibility with PopEnchantTags
+
+1.0.0:
+-first release for 1.9
+'''
+
+[[dependencies.armorhud]]
+modId="forge"
+mandatory=true
+versionRange="[25,)"
+ordering="NONE"
+side="CLIENT"
+
+[[dependencies.armorshud]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.13.2]"
+ordering="NONE"
+side="CLIENT"

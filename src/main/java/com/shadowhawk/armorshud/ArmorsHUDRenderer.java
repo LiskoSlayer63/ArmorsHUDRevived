@@ -1,9 +1,11 @@
 package com.shadowhawk.armorshud;
 
+import com.shadowhawk.armorshud.config.ArmorsHUDConfig;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.GameType;
@@ -98,7 +100,7 @@ public class ArmorsHUDRenderer {
 	 */
 	public void render(int screenWidth, int screenHeight)
 	{
-		Minecraft mc = Minecraft.getMinecraft();
+		Minecraft mc = Minecraft.getInstance();
 
         //This will only work if the player exists and has an inventory, and if the overlay is enabled
 		//Essentially has to be loaded into a world
@@ -109,7 +111,7 @@ public class ArmorsHUDRenderer {
         	{
                 GlStateManager.enableRescaleNormal();
                 GlStateManager.enableBlend();
-                GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+                GlStateManager.blendFuncSeparate(770, 771, 1, 0);
                 RenderHelper.enableGUIStandardItemLighting();
                 for (int i = 0; i < 4; ++i)
                 {
@@ -135,7 +137,7 @@ public class ArmorsHUDRenderer {
 	 */
 	private void renderArmor(int armorSlot, int xPos, int yPos, float passedPartialTicks, EntityPlayer player)
     {
-        RenderItem itemRenderer = Minecraft.getMinecraft().getRenderItem();
+        ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         ItemStack armorItem = player.inventory.armorInventory.get(armorSlot);
 
         if (armorItem != null)
@@ -146,9 +148,9 @@ public class ArmorsHUDRenderer {
             {
                 GlStateManager.pushMatrix();
                 float var8 = 1.0F + animationFrames / 5.0F;
-                GlStateManager.translate(xPos + 8, yPos + 12, 0.0F);
-                GlStateManager.scale(1.0F / var8, (var8 + 1.0F) / 2.0F, 1.0F);
-                GlStateManager.translate((-(xPos + 8)), (-(yPos + 12)), 0.0F);
+                GlStateManager.translatef(xPos + 8, yPos + 12, 0.0F);
+                GlStateManager.scalef(1.0F / var8, (var8 + 1.0F) / 2.0F, 1.0F);
+                GlStateManager.translatef((-(xPos + 8)), (-(yPos + 12)), 0.0F);
             }
 
             itemRenderer.renderItemIntoGUI(armorItem, xPos, yPos);
@@ -158,7 +160,7 @@ public class ArmorsHUDRenderer {
                 GlStateManager.popMatrix();
             }
 
-            itemRenderer.renderItemOverlays(Minecraft.getMinecraft().fontRenderer, armorItem, xPos, yPos);
+            itemRenderer.renderItemOverlays(Minecraft.getInstance().fontRenderer, armorItem, xPos, yPos);
         }
     }
 
