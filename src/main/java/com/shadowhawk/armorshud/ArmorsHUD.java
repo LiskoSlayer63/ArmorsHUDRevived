@@ -5,6 +5,7 @@ import org.lwjgl.glfw.GLFW;
 
 import com.shadowhawk.armorshud.config.ArmorsHUDConfig;
 import com.shadowhawk.armorshud.config.ConfigHelper;
+import com.shadowhawk.armorshud.utils.Logger;
 
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.api.distmarker.Dist;

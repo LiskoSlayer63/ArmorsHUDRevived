@@ -6,7 +6,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import static com.shadowhawk.armorshud.ArmorsHUD.MOD_ID;
 
 import com.shadowhawk.armorshud.ArmorsHUDRenderer.Location;
-import com.shadowhawk.armorshud.Logger;
+import com.shadowhawk.armorshud.utils.Logger;
 
 /**
  * For configuration settings that change the behaviour of code on the LOGICAL CLIENT.

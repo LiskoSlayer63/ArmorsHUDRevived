@@ -1,4 +1,4 @@
-package com.shadowhawk.armorshud;
+package com.shadowhawk.armorshud.utils;
 
 public class Logger 
 {
