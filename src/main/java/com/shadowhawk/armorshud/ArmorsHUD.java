@@ -31,7 +31,7 @@ public class ArmorsHUD
 	
 	public static final String MOD_ID = "armorshud";
 	public static final String MOD_NAME = "Armors HUD Revived";
-	public static final String MOD_VERSION = "1.0.3";
+	public static final String MOD_VERSION = "1.2.0";
 	
 	public static KeyBinding cycleLocation;
 	public static KeyBinding toggleArmors;

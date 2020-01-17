@@ -2,11 +2,11 @@ package com.shadowhawk.armorshud;
 
 import com.shadowhawk.armorshud.config.ArmorsHUDConfig;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.GameType;
 
@@ -135,7 +135,7 @@ public class ArmorsHUDRenderer {
 	 * @param passedPartialTicks	The tick count used for animation of enchanted items
 	 * @param player				The player wearing the armor
 	 */
-	private void renderArmor(int armorSlot, int xPos, int yPos, float passedPartialTicks, EntityPlayer player)
+	private void renderArmor(int armorSlot, int xPos, int yPos, float passedPartialTicks, PlayerEntity player)
     {
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         ItemStack armorItem = player.inventory.armorInventory.get(armorSlot);

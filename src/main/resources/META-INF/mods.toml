@@ -1,8 +1,8 @@
 modLoader="javafml"
-loaderVersion="[25,)"
+loaderVersion="[28,)"
 [[mods]]
 modId="armorshud"
-version="1.0.3"
+version="1.2.0"
 displayName="Armors HUD Revived"
 logoFile="armorshud.png"
 credits="Sources written by Shadow_Hawk. Ported to Forge by LiskoSlayer63."
@@ -12,7 +12,7 @@ A movable HUD for armor!
 
 -Can be toggled in-game via the settings here or with a keybind
 -Can be adjusted to show the HUD at the top of the screen or in one of the bottom corners
--Keybinds are off by default, but you can easily set them from the \"commands\" setting page
+-Keybinds are off by default, but you can easily set them from the "controls" setting page
 
 
 CHANGELOG:
@@ -48,13 +48,13 @@ CHANGELOG:
 [[dependencies.armorhud]]
 modId="forge"
 mandatory=true
-versionRange="[25,)"
+versionRange="[28,)"
 ordering="NONE"
 side="CLIENT"
 
 [[dependencies.armorshud]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.13.2]"
+versionRange="[1.14.4]"
 ordering="NONE"
 side="CLIENT"
