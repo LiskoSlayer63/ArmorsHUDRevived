@@ -1,6 +1,7 @@
 package com.shadowhawk.armorshud;
 
 import org.apache.logging.log4j.LogManager;
+import org.lwjgl.glfw.GLFW;
 
 import com.shadowhawk.armorshud.config.ArmorsHUDConfig;
 import com.shadowhawk.armorshud.config.ConfigHelper;
@@ -54,8 +55,8 @@ public class ArmorsHUD
 	{
 		Logger.debug("========= P R E  I N I T =========");
 
-		toggleArmors = new KeyBinding(MOD_ID + ".key.toggle", 0, MOD_NAME);
-		cycleLocation = new KeyBinding(MOD_ID + ".key.cycle", 0, MOD_NAME);
+		toggleArmors = new KeyBinding(MOD_ID + ".key.toggle", GLFW.GLFW_KEY_UNKNOWN, MOD_NAME);
+		cycleLocation = new KeyBinding(MOD_ID + ".key.cycle", GLFW.GLFW_KEY_UNKNOWN, MOD_NAME);
 		
 		ClientRegistry.registerKeyBinding(toggleArmors);
 		ClientRegistry.registerKeyBinding(cycleLocation);
