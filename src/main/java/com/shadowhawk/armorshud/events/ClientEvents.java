@@ -23,7 +23,7 @@ public class ClientEvents
 		Minecraft minecraft = Minecraft.getInstance();
 		ArmorsHUD instance = ArmorsHUD.instance;
 
-		instance.renderer.render(minecraft.mainWindow.getScaledWidth(), minecraft.mainWindow.getScaledHeight());
+		instance.renderer.render(minecraft);
 	}
 	
 	@SubscribeEvent

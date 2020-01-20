@@ -6,7 +6,6 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.GameType;
 
@@ -98,70 +97,42 @@ public class ArmorsHUDRenderer {
 	 * @param screenWidth	the width of the window
 	 * @param screenHeight	the height of the window
 	 */
-	public void render(int screenWidth, int screenHeight)
+	public void render(Minecraft minecraft)
 	{
-		Minecraft mc = Minecraft.getInstance();
+    	ItemRenderer itemRenderer = minecraft.getItemRenderer();
 
         //This will only work if the player exists and has an inventory, and if the overlay is enabled
 		//Essentially has to be loaded into a world
-		if (mc.player != null && mc.player.inventory != null && ArmorsHUDConfig.enabled)
+		if (minecraft.player != null && minecraft.player.inventory != null && ArmorsHUDConfig.enabled)
         {
             //Check to make sure armor overlay doesn't render while in spectator
-			if (mc.world.getWorldInfo().getGameType() != GameType.SPECTATOR)
+			if (minecraft.world.getWorldInfo().getGameType() != GameType.SPECTATOR)
         	{
+				GlStateManager.pushTextureAttributes();
                 GlStateManager.enableRescaleNormal();
                 GlStateManager.enableBlend();
                 GlStateManager.blendFuncSeparate(770, 771, 1, 0);
                 RenderHelper.enableGUIStandardItemLighting();
+                
                 for (int i = 0; i < 4; ++i)
                 {
-                	int x = ArmorsHUDConfig.location.processX(screenWidth, i);
-                	int y = ArmorsHUDConfig.location.processY(screenHeight, i);
-                	this.renderArmor(i, x, y, mc.getRenderPartialTicks(), mc.player);
+                	int x = ArmorsHUDConfig.location.processX(minecraft.mainWindow.getScaledWidth(), i);
+                	int y = ArmorsHUDConfig.location.processY(minecraft.mainWindow.getScaledHeight(), i);
+
+                    ItemStack armorItem = minecraft.player.inventory.armorInventory.get(i);
+
+                    if (armorItem != null)
+                    {
+                        itemRenderer.renderItemAndEffectIntoGUI(armorItem, x, y);
+                        itemRenderer.renderItemOverlays(minecraft.fontRenderer, armorItem, x, y);
+                    }
                 }
                
                 RenderHelper.disableStandardItemLighting();
                 GlStateManager.disableRescaleNormal();
                 GlStateManager.disableBlend();
+				GlStateManager.popAttributes();
             }
         }
 	}
-
-	/**
-	 * Renders an armor item based on which armor slot and a specific set of coordinates
-	 * @param armorSlot				The index of armor slot to render the item from
-	 * @param xPos					The x-coordinate to render on-screen
-	 * @param yPos					The y-coordinate to render on-screen
-	 * @param passedPartialTicks	The tick count used for animation of enchanted items
-	 * @param player				The player wearing the armor
-	 */
-	private void renderArmor(int armorSlot, int xPos, int yPos, float passedPartialTicks, PlayerEntity player)
-    {
-        ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-        ItemStack armorItem = player.inventory.armorInventory.get(armorSlot);
-
-        if (armorItem != null)
-        {
-            float animationFrames = armorItem.getAnimationsToGo() - passedPartialTicks;
-
-            if (animationFrames > 0.0F)
-            {
-                GlStateManager.pushMatrix();
-                float var8 = 1.0F + animationFrames / 5.0F;
-                GlStateManager.translatef(xPos + 8, yPos + 12, 0.0F);
-                GlStateManager.scalef(1.0F / var8, (var8 + 1.0F) / 2.0F, 1.0F);
-                GlStateManager.translatef((-(xPos + 8)), (-(yPos + 12)), 0.0F);
-            }
-
-            itemRenderer.renderItemIntoGUI(armorItem, xPos, yPos);
-
-            if (animationFrames > 0.0F)
-            {
-                GlStateManager.popMatrix();
-            }
-
-            itemRenderer.renderItemOverlays(Minecraft.getInstance().fontRenderer, armorItem, xPos, yPos);
-        }
-    }
-
 }
