@@ -108,7 +108,7 @@ public class ArmorsHUDRenderer {
             //Check to make sure armor overlay doesn't render while in spectator
 			if (minecraft.world.getWorldInfo().getGameType() != GameType.SPECTATOR)
         	{
-				GlStateManager.pushTextureAttributes();
+				GlStateManager.pushLightingAttributes();
                 GlStateManager.enableRescaleNormal();
                 GlStateManager.enableBlend();
                 GlStateManager.blendFuncSeparate(770, 771, 1, 0);
