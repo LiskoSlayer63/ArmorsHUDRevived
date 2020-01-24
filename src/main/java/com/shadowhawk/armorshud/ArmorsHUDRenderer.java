@@ -2,7 +2,7 @@ package com.shadowhawk.armorshud;
 
 import com.shadowhawk.armorshud.config.ArmorsHUDConfig;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderHelper;
@@ -108,10 +108,10 @@ public class ArmorsHUDRenderer {
             //Check to make sure armor overlay doesn't render while in spectator
 			if (minecraft.world.getWorldInfo().getGameType() != GameType.SPECTATOR)
         	{
-				GlStateManager.pushLightingAttributes();
-                GlStateManager.enableRescaleNormal();
-                GlStateManager.enableBlend();
-                GlStateManager.blendFuncSeparate(770, 771, 1, 0);
+				RenderSystem.pushLightingAttributes();
+                RenderSystem.enableRescaleNormal();
+                RenderSystem.enableBlend();
+                RenderSystem.blendFuncSeparate(770, 771, 1, 0);
                 RenderHelper.enableStandardItemLighting();
                 
                 for (int i = 0; i < 4; ++i)
@@ -129,9 +129,9 @@ public class ArmorsHUDRenderer {
                 }
                
                 RenderHelper.disableStandardItemLighting();
-                GlStateManager.disableRescaleNormal();
-                GlStateManager.disableBlend();
-				GlStateManager.popAttributes();
+                RenderSystem.disableRescaleNormal();
+                RenderSystem.disableBlend();
+				RenderSystem.popAttributes();
             }
         }
 	}
