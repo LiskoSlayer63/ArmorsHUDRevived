@@ -112,12 +112,12 @@ public class ArmorsHUDRenderer {
                 GlStateManager.enableRescaleNormal();
                 GlStateManager.enableBlend();
                 GlStateManager.blendFuncSeparate(770, 771, 1, 0);
-                RenderHelper.enableGUIStandardItemLighting();
+                RenderHelper.enableStandardItemLighting();
                 
                 for (int i = 0; i < 4; ++i)
                 {
-                	int x = ArmorsHUDConfig.location.processX(minecraft.mainWindow.getScaledWidth(), i);
-                	int y = ArmorsHUDConfig.location.processY(minecraft.mainWindow.getScaledHeight(), i);
+                	int x = ArmorsHUDConfig.location.processX(minecraft.getMainWindow().getScaledWidth(), i);
+                	int y = ArmorsHUDConfig.location.processY(minecraft.getMainWindow().getScaledHeight(), i);
 
                     ItemStack armorItem = minecraft.player.inventory.armorInventory.get(i);
 
