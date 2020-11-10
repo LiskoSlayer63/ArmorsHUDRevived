@@ -1,9 +1,9 @@
 package com.shadowhawk.armorshud.config;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.config.ModConfig;
-
-import org.apache.commons.lang3.tuple.Pair;
 
 /**
  * This holds the Client & Server Configs and the Client & Server ConfigSpecs.

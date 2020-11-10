@@ -1,5 +1,6 @@
 modLoader="javafml"
-loaderVersion="[31,)"
+loaderVersion="[34,)"
+license="I don't actually know"
 [[mods]]
 modId="armorshud"
 version="1.2.0"
@@ -48,13 +49,13 @@ CHANGELOG:
 [[dependencies.armorhud]]
 modId="forge"
 mandatory=true
-versionRange="[31,)"
+versionRange="[34,)"
 ordering="NONE"
 side="CLIENT"
 
 [[dependencies.armorshud]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.15.2]"
+versionRange="[1.16.3]"
 ordering="NONE"
 side="CLIENT"

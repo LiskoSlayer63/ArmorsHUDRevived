@@ -1,8 +1,8 @@
 package com.shadowhawk.armorshud;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.shadowhawk.armorshud.config.ArmorsHUDConfig;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderHelper;
@@ -106,7 +106,7 @@ public class ArmorsHUDRenderer {
 		if (minecraft.player != null && minecraft.player.inventory != null && ArmorsHUDConfig.enabled)
         {
             //Check to make sure armor overlay doesn't render while in spectator
-			if (minecraft.world.getWorldInfo().getGameType() != GameType.SPECTATOR)
+			if (minecraft.playerController != null && minecraft.playerController.getCurrentGameType() != GameType.SPECTATOR)
         	{
 				RenderSystem.pushLightingAttributes();
                 RenderSystem.enableRescaleNormal();
