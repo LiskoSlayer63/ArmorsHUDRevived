@@ -1,5 +1,6 @@
 package com.shadowhawk.armorshud;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.lwjgl.glfw.GLFW;
 
@@ -10,7 +11,9 @@ import com.shadowhawk.armorshud.utils.Logger;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.network.FMLNetworkConstants;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig.Type;
@@ -41,15 +44,18 @@ public class ArmorsHUD
 		if (instance != null)
 			throw new RuntimeException("Double instantiation of " + MOD_NAME);
 		instance = this;
-
+		//Make sure the mod being absent on the other network side does not cause the client to display the server as incompatible
 		Logger.init(LogManager.getLogger(MOD_ID));
 		Logger.enableDebug(ArmorsHUDConfig.DEBUG);
 		
+		ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
+	
 		ModLoadingContext.get().registerConfig(Type.COMMON, ConfigHelper.SPEC);
 	    
-	    DistExecutor.runWhenOn(Dist.CLIENT, ()->()-> {
+	    DistExecutor.safeRunWhenOn(Dist.CLIENT, ()->()-> {
 	    	FMLJavaModLoadingContext.get().getModEventBus().addListener(this::init);
 	    });
+	    
 	}
 	
 	public void init(FMLClientSetupEvent event) 
